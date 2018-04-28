@@ -8,6 +8,7 @@ public class CameraProvider {
   }
 
   deinit {
+    reset()
     CameraProvider_destroy(wrapped)
   }
 
