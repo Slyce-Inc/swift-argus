@@ -44,6 +44,8 @@ extern void OutputStream_destroy(const void* self);
 //
 extern EGLStreamKHR OutputStream_getEGLStream(const void* self);
 extern void OutputStream_reset(const void* self);
+extern bool OutputStream_waitUntilConnected(const void* self, unsigned long timeout);
+extern void OutputStream_disconnect(const void* self);
 
 
 // Request

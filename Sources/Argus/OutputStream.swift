@@ -20,4 +20,12 @@ public class OutputStream {
   public func reset() {
     OutputStream_reset(wrapped)
   }
+
+  public func waitUntilConnected(timeout: UInt) -> Bool {
+    return OutputStream_waitUntilConnected(wrapped, timeout)
+  }
+
+  public func disconnect() {
+    OutputStream_disconnect(wrapped)
+  }
 }

@@ -16,4 +16,13 @@ void OutputStream_reset(UniqueObj<OutputStream>* self) {
   self->reset();
 }
 
+bool OutputStream_waitUntilConnected(UniqueObj<OutputStream>* self, uint64_t timeout) {
+  Argus::Status status = interface_cast<IStream>(*self)->waitUntilConnected(timeout);
+  return status == STATUS_OK;
+}
+
+void OutputStream_disconnect(UniqueObj<OutputStream>* self) {
+  interface_cast<IStream>(*self)->disconnect();
+}
+
 } // extern "C"
