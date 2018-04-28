@@ -31,4 +31,8 @@ public class CameraProvider {
     guard let cs = CameraProvider_createCaptureSession(wrapped, &ptrs, ptrs.count) else { return nil }
     return CaptureSession(cs)
   }
+
+  public func reset() {
+    CameraProvider_reset(wrapped)
+  }
 }
