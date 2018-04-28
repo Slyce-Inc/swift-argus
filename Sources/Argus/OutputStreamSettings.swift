@@ -19,4 +19,15 @@ public class OutputStreamSettings {
       OutputStreamSettings_setPixelFormat(wrapped, newValue.rawValue)
     }
   }
+
+  public var resolution: Size2D {
+    get {
+      var w = 0, h = 0
+      OutputStreamSettings_getResolution(wrapped, &w, &h)
+      return Size2D(width: w, height: h)
+    }
+    set {
+      OutputStreamSettings_setResolution(wrapped, newValue.width, newValue.height)
+    }
+  }
 }

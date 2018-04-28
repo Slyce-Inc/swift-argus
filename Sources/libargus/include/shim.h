@@ -1,4 +1,3 @@
-
 // CameraProvider
 
 extern const void* CameraProvider_create();
@@ -24,3 +23,5 @@ extern void OutputStreamSettings_destroy(const void* self);
 
 extern void OutputStreamSettings_setPixelFormat(const void* self, long pixelFormatOrdinal);
 extern long OutputStreamSettings_getPixelValue(const void* self);
+extern void OutputStreamSettings_setResolution(const void* self, long width, long height);
+extern void OutputStreamSettings_getResolution(const void* self, long* width, long* height);

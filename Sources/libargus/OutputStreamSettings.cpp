@@ -53,11 +53,15 @@ long OutputStreamSettings_getPixelValue(UniqueObj<OutputStreamSettings>* self) {
   return ordinalFromPixelFormat(interface_cast<IOutputStreamSettings>(*self)->getPixelFormat());
 }
 
-// void OutputStreamSettings_setResolution(UniqueObj<OutputStreamSettings>* self) {
-// }
-//
-// iStreamSettings->setPixelFormat();
-// iStreamSettings->setResolution(options.captureSize);
+void OutputStreamSettings_setResolution(UniqueObj<OutputStreamSettings>* self, long width, long height) {
+  Argus::Size2D<uint32_t> resolution((uint32_t)width, (uint32_t)height);
+  interface_cast<IOutputStreamSettings>(*self)->setResolution(resolution);
+}
 
+void OutputStreamSettings_getResolution(UniqueObj<OutputStreamSettings>* self, long* width, long* height) {
+  Size2D<uint32_t> resolution = interface_cast<IOutputStreamSettings>(*self)->getResolution();
+  *width = resolution.width();
+  *height = resolution.height();
+}
 
 } // extern "C"
