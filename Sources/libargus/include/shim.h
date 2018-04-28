@@ -21,3 +21,6 @@ extern const void* CaptureSession_createOutputStreamSettings(const void* self);
 // OutputStreamSettings
 
 extern void OutputStreamSettings_destroy(const void* self);
+
+extern void OutputStreamSettings_setPixelFormat(const void* self, long pixelFormatOrdinal);
+extern long OutputStreamSettings_getPixelValue(const void* self);
