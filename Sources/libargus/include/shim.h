@@ -25,3 +25,5 @@ extern void OutputStreamSettings_setPixelFormat(const void* self, long pixelForm
 extern long OutputStreamSettings_getPixelValue(const void* self);
 extern void OutputStreamSettings_setResolution(const void* self, long width, long height);
 extern void OutputStreamSettings_getResolution(const void* self, long* width, long* height);
+extern const void* OutputStreamSettings_getCameraDevice(const void* self);
+extern void OutputStreamSettings_setCameraDevice(const void* self, const void* cameraDevice);

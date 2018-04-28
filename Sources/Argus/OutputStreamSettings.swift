@@ -30,4 +30,19 @@ public class OutputStreamSettings {
       OutputStreamSettings_setResolution(wrapped, newValue.width, newValue.height)
     }
   }
+
+  public var cameraDevice: CameraDevice? {
+    get {
+      guard let cd = OutputStreamSettings_getCameraDevice(wrapped) else {
+        return nil
+      }
+      return CameraDevice(cd)
+    }
+    set {
+      guard let cameraDevice = newValue else {
+        return
+      }
+      OutputStreamSettings_setCameraDevice(wrapped, cameraDevice.wrapped)
+    }
+  }
 }

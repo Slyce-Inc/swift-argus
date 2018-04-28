@@ -64,4 +64,12 @@ void OutputStreamSettings_getResolution(UniqueObj<OutputStreamSettings>* self, l
   *height = resolution.height();
 }
 
+const void* OutputStreamSettings_getCameraDevice(UniqueObj<OutputStreamSettings>* self) {
+  return interface_cast<IOutputStreamSettings>(*self)->getCameraDevice();
+}
+
+void OutputStreamSettings_setCameraDevice(UniqueObj<OutputStreamSettings>* self, CameraDevice* cameraDevice) {
+  interface_cast<IOutputStreamSettings>(*self)->setCameraDevice(cameraDevice);
+}
+
 } // extern "C"
