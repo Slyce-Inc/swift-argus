@@ -26,9 +26,9 @@ public class CameraProvider {
     return ptrs[..<n].map { CameraDevice($0!) }
   }
 
-  public func createCaptureSession(cameraDevices: [CameraDevice]) {
+  public func createCaptureSession(cameraDevices: [CameraDevice]) -> CaptureSession? {
     var ptrs = cameraDevices.map { $0.wrapped }
-    let x = CameraProvider_createCaptureSession(wrapped, &ptrs, ptrs.count)
-    print(x)
+    guard let cs = CameraProvider_createCaptureSession(wrapped, &ptrs, ptrs.count) else { return nil }
+    return CaptureSession(cs)
   }
 }

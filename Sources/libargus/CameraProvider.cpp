@@ -25,7 +25,7 @@ const char* CameraProvider_getVersion(UniqueObj<CameraProvider>* self) {
   return interface_cast<ICameraProvider>(*self)->getVersion().c_str();
 }
 
-long CameraProvider_getDevices(UniqueObj<CameraProvider>* self, CameraDevice** devices, long maxDevices) {
+long CameraProvider_getDevices(UniqueObj<CameraProvider>* self, CameraDevice* devices[], long maxDevices) {
   std::vector<CameraDevice*> cd;
   if (interface_cast<ICameraProvider>(*self)->getCameraDevices(&cd) != STATUS_OK) {
     return 0;
@@ -37,7 +37,7 @@ long CameraProvider_getDevices(UniqueObj<CameraProvider>* self, CameraDevice** d
   return numberToReturn;
 }
 
-void* CameraProvider_createCaptureSession(UniqueObj<CameraProvider>* self, CameraDevice** devices, long count) {
+void* CameraProvider_createCaptureSession(UniqueObj<CameraProvider>* self, CameraDevice* devices[], long count) {
   std::vector<CameraDevice*> cd;
   for (int i = 0; i < count; i++) {
     cd.push_back(devices[i]);
