@@ -16,4 +16,8 @@ UniqueObj<OutputStream>* CaptureSession_createOutputStream(UniqueObj<CaptureSess
   return new UniqueObj<OutputStream>(interface_cast<ICaptureSession>(*self)->createOutputStream(outputStreamSettings->get()));
 }
 
+UniqueObj<Request>* CaptureSession_createRequest(UniqueObj<CaptureSession>* self) {
+  return new UniqueObj<Request>(interface_cast<ICaptureSession>(*self)->createRequest());
+}
+
 } // extern "C"

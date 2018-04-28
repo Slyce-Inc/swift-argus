@@ -15,7 +15,8 @@ extern const void* CameraProvider_createCaptureSession(const void* self, const v
 extern void CaptureSession_destroy(const void* self);
 
 extern const void* CaptureSession_createOutputStreamSettings(const void* self);
-extern const void*  CaptureSession_createOutputStream(const void* self, const void* outputStreamSettings);
+extern const void* CaptureSession_createOutputStream(const void* self, const void* outputStreamSettings);
+extern const void* CaptureSession_createRequest(const void* self);
 
 
 // OutputStreamSettings
@@ -33,3 +34,8 @@ extern void OutputStreamSettings_setCameraDevice(const void* self, const void* c
 // OutputStream
 
 extern void OutputStream_destroy(const void* self);
+
+
+// Request
+
+extern void Request_destroy(const void* self);
