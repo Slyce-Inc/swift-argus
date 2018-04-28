@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 // CameraProvider
 
 extern const void* CameraProvider_create();
@@ -39,3 +41,4 @@ extern void OutputStream_destroy(const void* self);
 // Request
 
 extern void Request_destroy(const void* self);
+extern bool Request_enableOutputStream(const void* self, const void* outputStream);

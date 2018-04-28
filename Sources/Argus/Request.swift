@@ -10,4 +10,8 @@ public class Request {
   deinit {
     Request_destroy(wrapped)
   }
+
+  public func enable(outputStream: OutputStream) -> Bool {
+    return Request_enableOutputStream(wrapped, outputStream.wrapped)
+  }
 }
