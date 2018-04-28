@@ -5,7 +5,6 @@ import PackageDescription
 let package = Package(
     name: "libArgus",
     products: [
-        .library(name: "libargus", targets: ["libargus"]),
         .library(name: "Argus", targets: ["Argus"]),
     ],
     dependencies: [
