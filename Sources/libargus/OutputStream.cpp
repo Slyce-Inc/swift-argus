@@ -8,4 +8,8 @@ void OutputStream_destroy(UniqueObj<OutputStream>* self) {
   delete self;
 }
 
+EGLStreamKHR OutputStream_getEGLStream(UniqueObj<OutputStream>* self) {
+  return interface_cast<IStream>(*self)->getEGLStream();
+}
+
 } // extern "C"

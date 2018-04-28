@@ -10,4 +10,10 @@ public class OutputStream {
   deinit {
     OutputStream_destroy(wrapped)
   }
+
+  public var EGLStream: EGLStreamKHR {
+    get {
+      return OutputStream_getEGLStream(wrapped)
+    }
+  }
 }

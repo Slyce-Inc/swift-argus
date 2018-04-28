@@ -8,3 +8,5 @@ public struct Size2D {
     self.height = height
   }
 }
+
+public typealias EGLStreamKHR = Int
