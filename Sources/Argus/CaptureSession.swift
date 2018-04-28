@@ -15,4 +15,9 @@ public class CaptureSession {
     guard let oss = CaptureSession_createOutputStreamSettings(wrapped) else { return nil }
     return OutputStreamSettings(oss)
   }
+
+  public func createOutputStream(_ outputStreamSettings: OutputStreamSettings) -> OutputStream? {
+    guard let os = CaptureSession_createOutputStream(wrapped, outputStreamSettings.wrapped) else { return nil }
+    return OutputStream(os)
+  }
 }
