@@ -11,15 +11,15 @@ public class CameraProvider {
     CameraProvider_destroy(wrapped)
   }
 
-  public func getVersion() -> String {
+  public var version: String {
     return String(cString: CameraProvider_getVersion(wrapped))
   }
 
-  public func getVendor() -> String {
+  public var vendor: String {
     return String(cString: CameraProvider_getVendor(wrapped))
   }
 
-  public func getDevices() -> [CameraDevice]? {
+  public var cameraDevices: [CameraDevice]? {
     var ptrs = [UnsafeRawPointer?](repeating: nil, count: 6)
     let n = CameraProvider_getDevices(wrapped, &ptrs, ptrs.count)
     guard n != 0 else { return nil }
