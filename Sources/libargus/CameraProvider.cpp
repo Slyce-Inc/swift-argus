@@ -42,7 +42,7 @@ void* CameraProvider_createCaptureSession(UniqueObj<CameraProvider>* self, Camer
   for (int i = 0; i < count; i++) {
     cd.push_back(devices[i]);
   }
-  return interface_cast<ICameraProvider>(*self)->createCaptureSession(cd);
+  return new UniqueObj<CaptureSession>(interface_cast<ICameraProvider>(*self)->createCaptureSession(cd));
 }
 
 } // extern "C"
