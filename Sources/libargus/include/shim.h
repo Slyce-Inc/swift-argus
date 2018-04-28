@@ -22,6 +22,8 @@ extern const void* CaptureSession_createOutputStreamSettings(const void* self);
 extern const void* CaptureSession_createOutputStream(const void* self, const void* outputStreamSettings);
 extern const void* CaptureSession_createRequest(const void* self);
 extern bool CaptureSession_repeat(const void* self, const void* captureRequest);
+extern void CaptureSession_stopRepeat(const void* self);
+extern void CaptureSession_waitForIdle(const void* self);
 
 
 // OutputStreamSettings
@@ -41,6 +43,7 @@ extern void OutputStreamSettings_setCameraDevice(const void* self, const void* c
 extern void OutputStream_destroy(const void* self);
 //
 extern EGLStreamKHR OutputStream_getEGLStream(const void* self);
+extern void OutputStream_reset(const void* self);
 
 
 // Request

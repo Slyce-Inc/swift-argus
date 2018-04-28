@@ -27,4 +27,12 @@ bool CaptureSession_repeat(UniqueObj<CaptureSession>* self, UniqueObj<Request>* 
   return result == STATUS_OK;
 }
 
+void CaptureSession_stopRepeat(UniqueObj<CaptureSession>* self) {
+  interface_cast<ICaptureSession>(*self)->stopRepeat();
+}
+
+void CaptureSession_waitForIdle(UniqueObj<CaptureSession>* self) {
+  interface_cast<ICaptureSession>(*self)->waitForIdle();
+}
+
 } // extern "C"

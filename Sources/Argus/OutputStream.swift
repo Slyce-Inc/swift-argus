@@ -16,4 +16,8 @@ public class OutputStream {
       return OutputStream_getEGLStream(wrapped)
     }
   }
+
+  public func reset() {
+    OutputStream_reset(wrapped)
+  }
 }

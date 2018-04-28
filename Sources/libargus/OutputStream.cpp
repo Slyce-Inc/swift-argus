@@ -12,4 +12,8 @@ EGLStreamKHR OutputStream_getEGLStream(UniqueObj<OutputStream>* self) {
   return interface_cast<IStream>(*self)->getEGLStream();
 }
 
+void OutputStream_reset(UniqueObj<OutputStream>* self) {
+  self->reset();
+}
+
 } // extern "C"

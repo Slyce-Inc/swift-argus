@@ -29,4 +29,12 @@ public class CaptureSession {
   public func `repeat`(request: Request) -> Bool {
     return CaptureSession_repeat(wrapped, request.wrapped)
   }
+
+  public func stopRepeat() {
+    CaptureSession_stopRepeat(wrapped)
+  }
+
+  public func waitForIdle() {
+    CaptureSession_waitForIdle(wrapped)
+  }
 }
