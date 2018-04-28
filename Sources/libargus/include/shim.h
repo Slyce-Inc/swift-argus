@@ -1,5 +1,7 @@
 #include <stdbool.h>
 
+typedef void *EGLStreamKHR;
+
 // CameraProvider
 
 extern const void* CameraProvider_create();
@@ -38,7 +40,7 @@ extern void OutputStreamSettings_setCameraDevice(const void* self, const void* c
 
 extern void OutputStream_destroy(const void* self);
 //
-extern long OutputStream_getEGLStream(const void* self);
+extern EGLStreamKHR OutputStream_getEGLStream(const void* self);
 
 
 // Request

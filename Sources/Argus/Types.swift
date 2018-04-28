@@ -9,4 +9,4 @@ public struct Size2D {
   }
 }
 
-public typealias EGLStreamKHR = Int
+public typealias EGLStreamKHR = UnsafeMutableRawPointer?
