@@ -20,4 +20,9 @@ UniqueObj<Request>* CaptureSession_createRequest(UniqueObj<CaptureSession>* self
   return new UniqueObj<Request>(interface_cast<ICaptureSession>(*self)->createRequest());
 }
 
+bool CaptureSession_repeat(UniqueObj<CaptureSession>* self, UniqueObj<Request>* captureRequest) {
+  int result = interface_cast<ICaptureSession>(*self)->repeat(captureRequest->get());
+  return result == STATUS_OK;
+}
+
 } // extern "C"

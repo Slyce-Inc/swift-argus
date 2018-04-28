@@ -25,4 +25,8 @@ public class CaptureSession {
     guard let r = CaptureSession_createRequest(wrapped) else { return nil }
     return Request(r)
   }
+
+  public func `repeat`(request: Request) -> Bool {
+    return CaptureSession_repeat(wrapped, request.wrapped)
+  }
 }
