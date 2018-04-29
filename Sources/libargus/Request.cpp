@@ -9,7 +9,8 @@ void Request_destroy(UniqueObj<Request>* self) {
 }
 
 bool Request_enableOutputStream(UniqueObj<Request>* self, UniqueObj<OutputStream>* outputStream) {
-  return STATUS_OK == interface_cast<IRequest>(*self)->enableOutputStream(outputStream->get());
+  Argus::Status status = interface_cast<IRequest>(*self)->enableOutputStream(outputStream->get());
+  return status == STATUS_OK;
 }
 
 } // extern "C"
