@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <stdint.h>
 
 typedef void *EGLStreamKHR;
 
@@ -53,3 +54,9 @@ extern void OutputStream_disconnect(const void* self);
 extern void Request_destroy(const void* self);
 //
 extern bool Request_enableOutputStream(const void* self, const void* outputStream);
+extern const void* Request_getSourceSettings(const void* self);
+
+
+// SourceSettings
+
+extern void SourceSettings_setFrameDurationRange(const void* self, uint64_t min, uint64_t max);
