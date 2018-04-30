@@ -14,7 +14,11 @@ bool Request_enableOutputStream(UniqueObj<Request>* self, UniqueObj<OutputStream
 }
 
 ISourceSettings* Request_getSourceSettings(UniqueObj<Request>* self) {
-  return interface_cast<ISourceSettings>(interface_cast<IRequest>(*self)->getSourceSettings());
+  InterfaceProvider* provider = interface_cast<IRequest>(*self)->getSourceSettings();
+  if (!provider) {
+    return NULL;
+  }
+  return interface_cast<ISourceSettings>(provider);
 }
 
 } // extern "C"
