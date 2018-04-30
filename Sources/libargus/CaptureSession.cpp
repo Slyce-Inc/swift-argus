@@ -1,5 +1,4 @@
 #include <Argus/Argus.h>
-#include <iostream>
 
 using namespace Argus;
 
@@ -22,9 +21,8 @@ UniqueObj<Request>* CaptureSession_createRequest(UniqueObj<CaptureSession>* self
 }
 
 bool CaptureSession_repeat(UniqueObj<CaptureSession>* self, UniqueObj<Request>* captureRequest) {
-  int result = interface_cast<ICaptureSession>(*self)->repeat(captureRequest->get());
-  std::cout << "result: " << result << "\n";
-  return result == STATUS_OK;
+  int status = interface_cast<ICaptureSession>(*self)->repeat(captureRequest->get());
+  return status == STATUS_OK;
 }
 
 void CaptureSession_stopRepeat(UniqueObj<CaptureSession>* self) {
