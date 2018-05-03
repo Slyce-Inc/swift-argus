@@ -21,4 +21,8 @@ ISourceSettings* Request_getSourceSettings(UniqueObj<Request>* self) {
   return interface_cast<ISourceSettings>(provider);
 }
 
+IDenoiseSettings* Request_getDenoiseSettings(UniqueObj<Request>* self) {
+  return interface_cast<IDenoiseSettings>(*self);
+}
+
 } // extern "C"

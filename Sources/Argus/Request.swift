@@ -21,4 +21,11 @@ public class Request {
     }
     return SourceSettings(ss)
   }
+
+  public var denoiseSettings: DenoiseSettings! {
+    guard let ds = Request_getDenoiseSettings(wrapped) else {
+      return nil
+    }
+    return DenoiseSettings(ds)
+  }
 }

@@ -59,8 +59,17 @@ extern void Request_destroy(const void* self);
 //
 extern bool Request_enableOutputStream(const void* self, const void* outputStream);
 extern const void* Request_getSourceSettings(const void* self);
+extern const void* Request_getDenoiseSettings(const void* self);
 
 
 // SourceSettings
 
 extern void SourceSettings_setFrameDurationRange(const void* self, uint64_t min, uint64_t max);
+
+
+// DenoiseSettings
+
+extern void DenoiseSettings_setMode(const void* self, long denoiseModeOrdinal);
+extern long DenoiseSettings_getMode(const void* self);
+extern void DenoiseSettings_setStrength(const void* self, float strength);
+extern float DenoiseSettings_getStrength(const void* self);
