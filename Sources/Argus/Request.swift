@@ -28,4 +28,11 @@ public class Request {
     }
     return DenoiseSettings(ds)
   }
+
+  public var edgeEnhanceSettings: EdgeEnhanceSettings! {
+    guard let ds = Request_getEdgeEnhanceSettings(wrapped) else {
+      return nil
+    }
+    return EdgeEnhanceSettings(ds)
+  }
 }

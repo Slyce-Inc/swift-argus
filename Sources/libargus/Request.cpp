@@ -25,4 +25,8 @@ IDenoiseSettings* Request_getDenoiseSettings(UniqueObj<Request>* self) {
   return interface_cast<IDenoiseSettings>(*self);
 }
 
+IEdgeEnhanceSettings* Request_getEdgeEnhanceSettings(UniqueObj<Request>* self) {
+  return interface_cast<IEdgeEnhanceSettings>(*self);
+}
+
 } // extern "C"
