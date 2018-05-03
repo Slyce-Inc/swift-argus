@@ -37,6 +37,8 @@ extern void OutputStreamSettings_setResolution(const void* self, long width, lon
 extern void OutputStreamSettings_getResolution(const void* self, long* width, long* height);
 extern const void* OutputStreamSettings_getCameraDevice(const void* self);
 extern void OutputStreamSettings_setCameraDevice(const void* self, const void* cameraDevice);
+extern void OutputStreamSettings_setStreamMode(const void* self, long streamModeOrdinal);
+extern long OutputStreamSettings_getStreamMode(const void* self);
 
 
 // OutputStream

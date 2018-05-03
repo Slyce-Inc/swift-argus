@@ -10,3 +10,8 @@ public struct Size2D {
 }
 
 public typealias EGLStreamKHR = UnsafeMutableRawPointer?
+
+public enum StreamMode : Int {
+  case MAILBOX = 1
+  case FIFO = 2
+}

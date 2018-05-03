@@ -45,4 +45,13 @@ public class OutputStreamSettings {
       OutputStreamSettings_setCameraDevice(wrapped, cameraDevice.wrapped)
     }
   }
+
+  public var streamMode: StreamMode {
+    get {
+      return StreamMode(rawValue: OutputStreamSettings_getStreamMode(wrapped))!
+    }
+    set {
+      OutputStreamSettings_setStreamMode(wrapped, streamMode.rawValue)
+    }
+  }
 }

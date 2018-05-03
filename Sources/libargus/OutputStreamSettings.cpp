@@ -40,6 +40,23 @@ static long ordinalFromPixelFormat(PixelFormat pixelFormat) {
   }
 }
 
+static StreamMode streamModeFromOrdinal(long ordinal) {
+  switch (ordinal) {
+    case 1: return STREAM_MODE_MAILBOX;
+    case 2: return STREAM_MODE_FIFO;
+  }
+  assert(false);
+}
+
+static long ordinalFromStreamMode(StreamMode streamMode) {
+  if (streamMode == STREAM_MODE_MAILBOX) {
+    return 1;
+  } else if (streamMode == STREAM_MODE_FIFO) {
+    return 2;
+  }
+  assert(false);
+}
+
 
 void OutputStreamSettings_destroy(UniqueObj<OutputStreamSettings>* self) {
   delete self;
@@ -70,6 +87,14 @@ const void* OutputStreamSettings_getCameraDevice(UniqueObj<OutputStreamSettings>
 
 void OutputStreamSettings_setCameraDevice(UniqueObj<OutputStreamSettings>* self, CameraDevice* cameraDevice) {
   interface_cast<IOutputStreamSettings>(*self)->setCameraDevice(cameraDevice);
+}
+
+void OutputStreamSettings_setStreamMode(UniqueObj<OutputStreamSettings>* self, long streamModeOrdinal) {
+  interface_cast<IOutputStreamSettings>(*self)->setMode(streamModeFromOrdinal(streamModeOrdinal));
+}
+
+long OutputStreamSettings_getStreamMode(UniqueObj<OutputStreamSettings>* self) {
+  return ordinalFromStreamMode(interface_cast<IOutputStreamSettings>(*self)->getMode());
 }
 
 } // extern "C"
