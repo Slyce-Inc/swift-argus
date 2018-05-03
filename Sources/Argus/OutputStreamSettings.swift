@@ -46,12 +46,21 @@ public class OutputStreamSettings {
     }
   }
 
-  public var streamMode: StreamMode {
+  public var mode: StreamMode {
     get {
       return StreamMode(rawValue: OutputStreamSettings_getStreamMode(wrapped))!
     }
     set {
-      OutputStreamSettings_setStreamMode(wrapped, streamMode.rawValue)
+      OutputStreamSettings_setStreamMode(wrapped, newValue.rawValue)
+    }
+  }
+
+  public var fifoLength : Int {
+    get {
+      return OutputStreamSettings_getFifoLength(wrapped)
+    }
+    set {
+      OutputStreamSettings_setFifoLength(wrapped, newValue)
     }
   }
 }

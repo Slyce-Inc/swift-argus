@@ -97,4 +97,12 @@ long OutputStreamSettings_getStreamMode(UniqueObj<OutputStreamSettings>* self) {
   return ordinalFromStreamMode(interface_cast<IOutputStreamSettings>(*self)->getMode());
 }
 
+void OutputStreamSettings_setFifoLength(UniqueObj<OutputStreamSettings>* self, long fifoLength) {
+  interface_cast<IOutputStreamSettings>(*self)->setFifoLength(fifoLength);
+}
+
+long OutputStreamSettings_getFifoLength(UniqueObj<OutputStreamSettings>* self) {
+  return interface_cast<IOutputStreamSettings>(*self)->getFifoLength();
+}
+
 } // extern "C"

@@ -39,6 +39,8 @@ extern const void* OutputStreamSettings_getCameraDevice(const void* self);
 extern void OutputStreamSettings_setCameraDevice(const void* self, const void* cameraDevice);
 extern void OutputStreamSettings_setStreamMode(const void* self, long streamModeOrdinal);
 extern long OutputStreamSettings_getStreamMode(const void* self);
+extern void OutputStreamSettings_setFifoLength(const void* self, long fifoLength);
+extern long OutputStreamSettings_getFifoLength(const void* self);
 
 
 // OutputStream
