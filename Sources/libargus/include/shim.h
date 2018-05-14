@@ -75,6 +75,8 @@ extern void AutoControlSettings_setMode(const void* self, long awbModeOrdinal);
 extern long AutoControlSettings_getMode(const void* self);
 void AutoControlSettings_setAwbLock(const void* self, bool awbLock);
 bool AutoControlSettings_getAwbLock(const void* self);
+void AutoControlSettings_setAeLock(const void* self, bool aeLock);
+bool AutoControlSettings_getAeLock(const void* self);
 
 
 // DenoiseSettings

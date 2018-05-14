@@ -24,6 +24,15 @@ public class AutoControlSettings {
       AutoControlSettings_setAwbLock(wrapped, newValue)
     }
   }
+
+  public var aeLock: Bool {
+    get {
+      return AutoControlSettings_getAeLock(wrapped)
+    }
+    set {
+      AutoControlSettings_setAeLock(wrapped, newValue)
+    }
+  }
 }
 
 public enum AwbMode : Int {

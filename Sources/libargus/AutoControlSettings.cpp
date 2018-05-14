@@ -62,4 +62,12 @@ bool AutoControlSettings_getAwbLock(IAutoControlSettings* self) {
   return self->getAwbLock();
 }
 
+void AutoControlSettings_setAeLock(IAutoControlSettings* self, bool aeLock) {
+  self->setAeLock(aeLock);
+}
+
+bool AutoControlSettings_getAeLock(IAutoControlSettings* self) {
+  return self->getAeLock();
+}
+
 } // extern "C"
