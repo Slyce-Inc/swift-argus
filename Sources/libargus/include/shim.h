@@ -59,6 +59,7 @@ extern void Request_destroy(const void* self);
 //
 extern bool Request_enableOutputStream(const void* self, const void* outputStream);
 extern const void* Request_getSourceSettings(const void* self);
+extern const void* Request_getAutoControlSettings(const void* self);
 extern const void* Request_getDenoiseSettings(const void* self);
 extern const void* Request_getEdgeEnhanceSettings(const void* self);
 
@@ -66,6 +67,14 @@ extern const void* Request_getEdgeEnhanceSettings(const void* self);
 // SourceSettings
 
 extern void SourceSettings_setFrameDurationRange(const void* self, uint64_t min, uint64_t max);
+
+
+//  AutoControlSettings
+
+extern void AutoControlSettings_setMode(const void* self, long awbModeOrdinal);
+extern long AutoControlSettings_getMode(const void* self);
+void AutoControlSettings_setAwbLock(const void* self, bool awbLock);
+bool AutoControlSettings_getAwbLock(const void* self);
 
 
 // DenoiseSettings

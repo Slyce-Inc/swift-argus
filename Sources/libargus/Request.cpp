@@ -21,6 +21,14 @@ ISourceSettings* Request_getSourceSettings(UniqueObj<Request>* self) {
   return interface_cast<ISourceSettings>(provider);
 }
 
+IAutoControlSettings* Request_getAutoControlSettings(UniqueObj<Request>* self) {
+  InterfaceProvider* provider = interface_cast<IRequest>(*self)->getAutoControlSettings();
+  if (!provider) {
+    return NULL;
+  }
+  return interface_cast<IAutoControlSettings>(provider);
+}
+
 IDenoiseSettings* Request_getDenoiseSettings(UniqueObj<Request>* self) {
   return interface_cast<IDenoiseSettings>(*self);
 }

@@ -22,6 +22,13 @@ public class Request {
     return SourceSettings(ss)
   }
 
+  public var autoControlSettings: AutoControlSettings! {
+    guard let acs = Request_getAutoControlSettings(wrapped) else {
+      return nil
+    }
+    return AutoControlSettings(acs)
+  }
+
   public var denoiseSettings: DenoiseSettings! {
     guard let ds = Request_getDenoiseSettings(wrapped) else {
       return nil
