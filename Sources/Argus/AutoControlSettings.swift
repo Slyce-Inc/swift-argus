@@ -36,14 +36,14 @@ public class AutoControlSettings {
 }
 
 public enum AwbMode : Int {
-  case OFF = 0;
-  case AUTO = 1;
-  case INCANDESCENT = 2;
-  case FLUORESCENT = 3;
-  case WARM_FLUORESCENT = 4;
-  case DAYLIGHT = 5;
-  case CLOUDY_DAYLIGHT = 6;
-  case TWILIGHT = 7;
-  case SHADE = 8;
-  case MANUAL = 9;
+  case OFF = 0
+  case AUTO = 1
+  case INCANDESCENT = 2
+  case FLUORESCENT = 3
+  case WARM_FLUORESCENT = 4
+  case DAYLIGHT = 5
+  case CLOUDY_DAYLIGHT = 6
+  case TWILIGHT = 7
+  case SHADE = 8
+  case MANUAL = 9
 }
