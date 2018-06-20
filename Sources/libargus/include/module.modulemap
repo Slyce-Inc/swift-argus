@@ -1,5 +1,5 @@
 module libargus [system] {
     header "shim.h"
-    link "argus"
+    link "argus_socketclient"
     export *
 }
