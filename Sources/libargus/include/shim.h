@@ -3,6 +3,19 @@
 
 typedef void *EGLStreamKHR;
 
+
+// CameraDevice
+
+extern long CameraDevice_getBasicSensorModes(const void* self, const void* sensorModes[], long maxSensorModes);
+extern long CameraDevice_getAllSensorModes(const void* self, const void* sensorModes[], long maxSensorModes);
+
+
+// SensorMode
+
+extern uint32_t SensorMode_getInputBitDepth(const void* self);
+extern uint32_t SensorMode_getOutputBitDepth(const void* self);
+
+
 // CameraProvider
 
 extern const void* CameraProvider_create();
