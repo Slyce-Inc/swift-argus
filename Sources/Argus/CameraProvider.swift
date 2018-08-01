@@ -20,10 +20,10 @@ public class CameraProvider {
     return String(cString: CameraProvider_getVendor(wrapped))
   }
 
-  public var cameraDevices: [CameraDevice]? {
+  public var cameraDevices: [CameraDevice] {
     var ptrs = [UnsafeRawPointer?](repeating: nil, count: 6)
     let n = CameraProvider_getDevices(wrapped, &ptrs, ptrs.count)
-    guard n != 0 else { return nil }
+    guard n != 0 else { return [] }
     return ptrs[..<n].map { CameraDevice($0!) }
   }
 
