@@ -1,4 +1,4 @@
-module libargus [system] {
+module Clibargus [system] {
     header "shim.h"
     link "argus"
     export *

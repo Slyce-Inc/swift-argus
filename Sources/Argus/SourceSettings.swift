@@ -1,4 +1,4 @@
-import libargus
+import Clibargus
 
 public class SourceSettings {
   let wrapped: UnsafeRawPointer?

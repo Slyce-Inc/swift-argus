@@ -1,4 +1,4 @@
-import libargus
+import Clibargus
 
 public class OutputStreamSettings {
   let wrapped: UnsafeRawPointer?

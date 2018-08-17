@@ -3,14 +3,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "libArgus",
+    name: "Argus",
     products: [
         .library(name: "Argus", targets: ["Argus"]),
+        .library(name: "Clibargus", targets: ["Clibargus"]),
     ],
     dependencies: [
     ],
     targets: [
-        .target(name: "libargus", dependencies: []),
-        .target(name: "Argus", dependencies: ["libargus"]),
+        .target(name: "Clibargus", dependencies: []),
+        .target(name: "Argus", dependencies: ["Clibargus"]),
     ]
 )
