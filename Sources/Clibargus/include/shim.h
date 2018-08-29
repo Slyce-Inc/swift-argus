@@ -80,6 +80,8 @@ extern const void* Request_getEdgeEnhanceSettings(const void* self);
 // SourceSettings
 
 extern void SourceSettings_setFrameDurationRange(const void* self, uint64_t min, uint64_t max);
+extern void SourceSettings_setExposureTimeRange(const void* self, uint64_t min, uint64_t max);
+extern void SourceSettings_getExposureTimeRange(const void* self, uint64_t* min, uint64_t* max);
 
 
 //  AutoControlSettings

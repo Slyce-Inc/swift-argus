@@ -1,5 +1,7 @@
 import Clibargus
 
+public typealias ExposureTimeRange = (min:UInt64, max:UInt64)
+
 public class SourceSettings {
   let wrapped: UnsafeRawPointer?
 
@@ -9,5 +11,17 @@ public class SourceSettings {
 
   public func setFrameDurationRange(min: UInt64, max: UInt64) {
     SourceSettings_setFrameDurationRange(wrapped, min, max)
+  }
+
+  public var exposureTimeRange: ExposureTimeRange {
+    get {
+      var min: UInt64 = 0
+      var max: UInt64 = 0
+      SourceSettings_getExposureTimeRange(wrapped, &min, &max)
+      return ExposureTimeRange(min, max)
+    }
+    set {
+      SourceSettings_setExposureTimeRange(wrapped, newValue.min, newValue.max)
+    }
   }
 }
