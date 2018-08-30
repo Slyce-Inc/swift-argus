@@ -23,4 +23,19 @@ void SourceSettings_getExposureTimeRange(ISourceSettings* self, uint64_t* min, u
   }
 }
 
+void SourceSettings_setGainRange(ISourceSettings* self, float min, float max) {
+  Range<float> range(min, max);
+  self->setGainRange(range);
+}
+
+void SourceSettings_getGainRange(ISourceSettings* self, float* min, float* max) {
+  Range<float> range = self->getGainRange();
+  if (min) {
+    *min = range.min();
+  }
+  if (max) {
+    *max = range.max();
+  }
+}
+
 } // extern "C"

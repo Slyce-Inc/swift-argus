@@ -70,4 +70,19 @@ bool AutoControlSettings_getAeLock(IAutoControlSettings* self) {
   return self->getAeLock();
 }
 
+void AutoControlSettings_setIspDigitalGainRange(IAutoControlSettings* self, float min, float max) {
+  Range<float> range(min, max);
+  self->setIspDigitalGainRange(range);
+}
+
+void AutoControlSettings_getIspDigitalGainRange(IAutoControlSettings* self, float* min, float* max) {
+  Range<float> range = self->getIspDigitalGainRange();
+  if (min) {
+    *min = range.min();
+  }
+  if (max) {
+    *max = range.max();
+  }
+}
+
 } // extern "C"

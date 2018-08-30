@@ -82,16 +82,19 @@ extern const void* Request_getEdgeEnhanceSettings(const void* self);
 extern void SourceSettings_setFrameDurationRange(const void* self, uint64_t min, uint64_t max);
 extern void SourceSettings_setExposureTimeRange(const void* self, uint64_t min, uint64_t max);
 extern void SourceSettings_getExposureTimeRange(const void* self, uint64_t* min, uint64_t* max);
-
+extern void SourceSettings_setGainRange(const void* self, float min, float max);
+extern void SourceSettings_getGainRange(const void* self, float* min, float* max);
 
 //  AutoControlSettings
 
 extern void AutoControlSettings_setMode(const void* self, long awbModeOrdinal);
 extern long AutoControlSettings_getMode(const void* self);
-void AutoControlSettings_setAwbLock(const void* self, bool awbLock);
-bool AutoControlSettings_getAwbLock(const void* self);
-void AutoControlSettings_setAeLock(const void* self, bool aeLock);
-bool AutoControlSettings_getAeLock(const void* self);
+extern void AutoControlSettings_setAwbLock(const void* self, bool awbLock);
+extern bool AutoControlSettings_getAwbLock(const void* self);
+extern void AutoControlSettings_setAeLock(const void* self, bool aeLock);
+extern bool AutoControlSettings_getAeLock(const void* self);
+extern void AutoControlSettings_setIspDigitalGainRange(const void* self, float min, float max);
+extern void AutoControlSettings_getIspDigitalGainRange(const void* self, float* min, float* max);
 
 
 // DenoiseSettings

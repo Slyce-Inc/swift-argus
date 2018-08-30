@@ -33,6 +33,18 @@ public class AutoControlSettings {
       AutoControlSettings_setAeLock(wrapped, newValue)
     }
   }
+
+  public var ispDigitalGainRange: GainRange {
+    get {
+      var min: Float = 0
+      var max: Float = 0
+      AutoControlSettings_getIspDigitalGainRange(wrapped, &min, &max)
+      return GainRange(min, max)
+    }
+    set {
+      AutoControlSettings_setIspDigitalGainRange(wrapped, newValue.min, newValue.max)
+    }
+  }
 }
 
 public enum AwbMode : Int {
