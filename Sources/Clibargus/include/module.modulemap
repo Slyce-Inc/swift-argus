@@ -1,5 +1,5 @@
 module Clibargus [system] {
     header "shim.h"
-    link "/usr/lib/aarch64-linux-gnu/tegra/libargus.so"
+    link "/usr/lib/aarch64-linux-gnu/tegra/libnvargus.so"
     export *
 }
