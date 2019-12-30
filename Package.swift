@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Argus",
+    name: "swift-argus",
     products: [
         .library(name: "Argus", targets: ["Argus"]),
     ],
