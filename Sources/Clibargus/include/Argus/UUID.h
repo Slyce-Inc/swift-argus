@@ -123,7 +123,7 @@ private:
 /// Helper macro used to define NamedUUID-derived values.
 #define DEFINE_UUID(TYPE, NAME, l, s0, s1, s2, c0,c1,c2,c3,c4,c5) \
     static const TYPE NAME(0x##l, 0x##s0, 0x##s1, 0x##s2, \
-                           0x##c0, 0x##c1, 0x##c2, 0x##c3, 0x##c4, 0x##c0, #NAME);
+                           0x##c0, 0x##c1, 0x##c2, 0x##c3, 0x##c4, 0x##c5, #NAME);
 
 #define DEFINE_NAMED_UUID_CLASS(NAME) \
         class NAME : public NamedUUID \

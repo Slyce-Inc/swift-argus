@@ -210,6 +210,10 @@ public:
      */
     virtual SensorModeType getSensorModeType() const = 0;
 
+    /**
+     * Checks if the buffer provided is supported by the camera device.
+     */
+     virtual bool isBufferFormatSupported(Buffer* buffer) const = 0;
 protected:
     ~ISensorMode() {}
 };

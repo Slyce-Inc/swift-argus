@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, NVIDIA CORPORATION. All rights reserved.
+ * Copyright (c) 2016-2018, NVIDIA CORPORATION. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -420,28 +420,6 @@ public:
 
 protected:
     ~IEdgeEnhanceMetadata() {}
-};
-
-/**
- * @class IVideoStabilizationMetadata
- *
- * Interface to video stabilization metadata.
- *
- * @ingroup ArgusCaptureMetadata
- */
-DEFINE_UUID(InterfaceID, IID_VIDEO_STABILIZATION_METADATA, 7A461D25,6AE1,11E6,BDF4,08,00,20,0C,9A,66);
-class IVideoStabilizationMetadata : public Interface
-{
-public:
-    static const InterfaceID& id() { return IID_VIDEO_STABILIZATION_METADATA; }
-
-    /**
-     * Returns the video stabilization mode used for the capture.
-     */
-    virtual VideoStabilizationMode getVideoStabilizationMode() const = 0;
-
-protected:
-    ~IVideoStabilizationMetadata() {}
 };
 
 } // namespace Argus

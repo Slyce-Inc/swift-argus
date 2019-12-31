@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, NVIDIA CORPORATION. All rights reserved.
+ * Copyright (c) 2016-2018, NVIDIA CORPORATION. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -88,120 +88,47 @@ class IStreamSettings;
 const uint64_t TIMEOUT_INFINITE = 0xFFFFFFFFFFFFFFFF;
 
 /**
- * Extension name UUID. Values are defined in extension headers.
+ * Status values returned by API function calls.
  */
-class ExtensionName : public NamedUUID
+enum Status
 {
-public:
-    ExtensionName(uint32_t time_low_
-                , uint16_t time_mid_
-                , uint16_t time_hi_and_version_
-                , uint16_t clock_seq_
-                , uint8_t c0, uint8_t c1, uint8_t c2, uint8_t c3, uint8_t c4, uint8_t c5
-                , const char* name)
-    : NamedUUID(time_low_, time_mid_, time_hi_and_version_, clock_seq_,
-                c0, c1, c2, c3, c4, c5, name)
-    {}
+    /// Function succeeded.
+    STATUS_OK                 = 0,
 
-    ExtensionName()
-    : NamedUUID(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "EXT_UNSPECIFIED")
-    {}
+    /// The set of parameters passed was invalid.
+    STATUS_INVALID_PARAMS     = 1,
+
+    /// The requested settings are invalid.
+    STATUS_INVALID_SETTINGS   = 2,
+
+    /// The requested device is unavailable.
+    STATUS_UNAVAILABLE        = 3,
+
+    /// An operation failed because of insufficient mavailable memory.
+    STATUS_OUT_OF_MEMORY      = 4,
+
+    /// This method has not been implemented.
+    STATUS_UNIMPLEMENTED      = 5,
+
+    /// An operation timed out.
+    STATUS_TIMEOUT            = 6,
+
+    /// The capture was aborted. @see ICaptureSession::cancelRequests()
+    STATUS_CANCELLED          = 7,
+
+    /// The stream or other resource has been disconnected.
+    STATUS_DISCONNECTED       = 8,
+
+    /// End of stream, used by Stream objects.
+    STATUS_END_OF_STREAM      = 9,
+
+    // Number of elements in this enum.
+    STATUS_COUNT
 };
 
-/*
- * Named UUID classes.
+/**
+ * Color channel constants for Bayer data.
  */
-
-DEFINE_NAMED_UUID_CLASS(AwbMode);
-DEFINE_NAMED_UUID_CLASS(CaptureIntent);
-DEFINE_NAMED_UUID_CLASS(DenoiseMode);
-DEFINE_NAMED_UUID_CLASS(EdgeEnhanceMode);
-DEFINE_NAMED_UUID_CLASS(SensorModeType);
-DEFINE_NAMED_UUID_CLASS(VideoStabilizationMode);
-
-/*
- * Named UUIDs sorted alphabetically.
- */
-
-DEFINE_UUID(AwbMode, AWB_MODE_OFF, FB3F365A,CC62,11E5,9956,62,56,62,87,07,61);
-DEFINE_UUID(AwbMode, AWB_MODE_AUTO, FB3F365B,CC62,11E5,9956,62,56,62,87,07,61);
-DEFINE_UUID(AwbMode, AWB_MODE_INCANDESCENT, FB3F365C,CC62,11E5,9956,62,56,62,87,07,61);
-DEFINE_UUID(AwbMode, AWB_MODE_FLUORESCENT, FB3F365D,CC62,11E5,9956,62,56,62,87,07,61);
-DEFINE_UUID(AwbMode, AWB_MODE_WARM_FLUORESCENT, FB3F365E,CC62,11E5,9956,62,56,62,87,07,61);
-DEFINE_UUID(AwbMode, AWB_MODE_DAYLIGHT, FB3F365F,CC62,11E5,9956,62,56,62,87,07,61);
-DEFINE_UUID(AwbMode, AWB_MODE_CLOUDY_DAYLIGHT, FB3F3660,CC62,11E5,9956,62,56,62,87,07,61);
-DEFINE_UUID(AwbMode, AWB_MODE_TWILIGHT, FB3F3661,CC62,11E5,9956,62,56,62,87,07,61);
-DEFINE_UUID(AwbMode, AWB_MODE_SHADE, FB3F3662,CC62,11E5,9956,62,56,62,87,07,61);
-DEFINE_UUID(AwbMode, AWB_MODE_MANUAL, 20FB45DA,C49F,4293,AB02,13,3F,8C,CA,DD,69);
-
-DEFINE_UUID(CaptureIntent, CAPTURE_INTENT_MANUAL,
-                           FB3F3663,CC62,11E5,9956,62,56,62,87,07,61);
-DEFINE_UUID(CaptureIntent, CAPTURE_INTENT_PREVIEW,
-                           FB3F3664,CC62,11E5,9956,62,56,62,87,07,61);
-DEFINE_UUID(CaptureIntent, CAPTURE_INTENT_STILL_CAPTURE,
-                           FB3F3665,CC62,11E5,9956,62,56,62,87,07,61);
-DEFINE_UUID(CaptureIntent, CAPTURE_INTENT_VIDEO_RECORD,
-                           FB3F3666,CC62,11E5,9956,62,56,62,87,07,61);
-DEFINE_UUID(CaptureIntent, CAPTURE_INTENT_VIDEO_SNAPSHOT,
-                           FB3F3667,CC62,11E5,9956,62,56,62,87,07,61);
-
-DEFINE_UUID(DenoiseMode, DENOISE_MODE_OFF, FB3F3668,CC62,11E5,9956,62,56,62,87,07,61);
-DEFINE_UUID(DenoiseMode, DENOISE_MODE_FAST, FB3F3669,CC62,11E5,9956,62,56,62,87,07,61);
-DEFINE_UUID(DenoiseMode, DENOISE_MODE_HIGH_QUALITY, FB3F366A,CC62,11E5,9956,62,56,62,87,07,61);
-
-DEFINE_UUID(EdgeEnhanceMode, EDGE_ENHANCE_MODE_OFF, F7100B40,6A5F,11E6,BDF4,08,00,20,0C,9A,66);
-DEFINE_UUID(EdgeEnhanceMode, EDGE_ENHANCE_MODE_FAST, F7100B41,6A5F,11E6,BDF4,08,00,20,0C,9A,66);
-DEFINE_UUID(EdgeEnhanceMode, EDGE_ENHANCE_MODE_HIGH_QUALITY, F7100B42,6A5F,11E6,BDF4,08,00,20,0C,9A,66);
-
-DEFINE_UUID(SensorModeType, SENSOR_MODE_TYPE_DEPTH,
-                            64483464,4b91,11e6,bbbd,40,16,7e,ab,86,92);
-DEFINE_UUID(SensorModeType, SENSOR_MODE_TYPE_YUV,
-                            6453e00c,4b91,11e6,871d,40,16,7e,ab,86,92);
-DEFINE_UUID(SensorModeType, SENSOR_MODE_TYPE_RGB,
-                            6463d4c6,4b91,11e6,88a3,40,16,7e,ab,86,92);
-DEFINE_UUID(SensorModeType, SENSOR_MODE_TYPE_BAYER,
-                            646f04ea,4b91,11e6,9c06,40,16,7e,ab,86,92);
-
-DEFINE_UUID(VideoStabilizationMode, VIDEO_STABILIZATION_MODE_OFF,
-                                    FB3F366E,CC62,11E5,9956,62,56,62,87,07,61);
-DEFINE_UUID(VideoStabilizationMode, VIDEO_STABILIZATION_MODE_ON,
-                                    FB3F366F,CC62,11E5,9956,62,56,62,87,07,61);
-
-/*
- * Camera settings constants - sorted alphabetically.
- */
-
-enum AeAntibandingMode
-{
-    AE_ANTIBANDING_MODE_OFF,
-    AE_ANTIBANDING_MODE_AUTO,
-    AE_ANTIBANDING_MODE_50HZ,
-    AE_ANTIBANDING_MODE_60HZ,
-
-    AE_ANTIBANDING_MODE_COUNT
-};
-
-enum AeState
-{
-    AE_STATE_INACTIVE,
-    AE_STATE_SEARCHING,
-    AE_STATE_CONVERGED,
-    AE_STATE_FLASH_REQUIRED,
-    AE_STATE_LOCKED,
-
-    AE_STATE_COUNT
-};
-
-enum AwbState
-{
-    AWB_STATE_INACTIVE,
-    AWB_STATE_SEARCHING,
-    AWB_STATE_CONVERGED,
-    AWB_STATE_LOCKED,
-
-    AWB_STATE_COUNT
-};
-
 enum BayerChannel
 {
     BAYER_CHANNEL_R,
@@ -213,50 +140,8 @@ enum BayerChannel
 };
 
 /**
- * Status values returned by API function calls.
+ * Coordinates used for 2D and 3D points.
  */
-enum Status
-{
-    /// Function succeeded.
-    STATUS_OK,
-
-    /// The set of parameters passed was invalid.
-    STATUS_INVALID_PARAMS,
-
-    /// The requested settings are invalid.
-    STATUS_INVALID_SETTINGS,
-
-    /// The requested device is unavailable.
-    STATUS_UNAVAILABLE,
-
-    /// An operation failed because of insufficient mavailable memory.
-    STATUS_OUT_OF_MEMORY,
-
-    /// This method has not been implemented.
-    STATUS_UNIMPLEMENTED,
-
-    /// An operation timed out.
-    STATUS_TIMEOUT,
-
-    /// The capture was aborted. @see ICaptureSession::cancelRequests()
-    STATUS_CANCELLED,
-
-    /// The stream or other resource has been disconnected.
-    STATUS_DISCONNECTED,
-
-    // Number of elements in this enum.
-    STATUS_COUNT
-};
-
-enum RGBChannel
-{
-    RGB_CHANNEL_R,
-    RGB_CHANNEL_G,
-    RGB_CHANNEL_B,
-
-    RGB_CHANNEL_COUNT
-};
-
 enum Coordinate
 {
     COORDINATE_X,
@@ -267,27 +152,100 @@ enum Coordinate
     COORDINATE_3D_COUNT = 3
 };
 
+/**
+ * Color channel constants for RGB data.
+ */
+enum RGBChannel
+{
+    RGB_CHANNEL_R,
+    RGB_CHANNEL_G,
+    RGB_CHANNEL_B,
+
+    RGB_CHANNEL_COUNT
+};
+
+/**
+ * Auto Exposure Anti-Banding Modes.
+ */
+DEFINE_NAMED_UUID_CLASS(AeAntibandingMode);
+DEFINE_UUID(AeAntibandingMode, AE_ANTIBANDING_MODE_OFF,  AD1E5560,9C16,11E8,B568,18,00,20,0C,9A,66);
+DEFINE_UUID(AeAntibandingMode, AE_ANTIBANDING_MODE_AUTO, AD1E5561,9C16,11E8,B568,18,00,20,0C,9A,66);
+DEFINE_UUID(AeAntibandingMode, AE_ANTIBANDING_MODE_50HZ, AD1E5562,9C16,11E8,B568,18,00,20,0C,9A,66);
+DEFINE_UUID(AeAntibandingMode, AE_ANTIBANDING_MODE_60HZ, AD1E5563,9C16,11E8,B568,18,00,20,0C,9A,66);
+
+/**
+ * Auto Exposure States.
+ */
+DEFINE_NAMED_UUID_CLASS(AeState);
+DEFINE_UUID(AeState, AE_STATE_INACTIVE,       D2EBEA50,9C16,11E8,B568,18,00,20,0C,9A,66);
+DEFINE_UUID(AeState, AE_STATE_SEARCHING,      D2EBEA51,9C16,11E8,B568,18,00,20,0C,9A,66);
+DEFINE_UUID(AeState, AE_STATE_CONVERGED,      D2EBEA52,9C16,11E8,B568,18,00,20,0C,9A,66);
+DEFINE_UUID(AeState, AE_STATE_FLASH_REQUIRED, D2EBEA53,9C16,11E8,B568,18,00,20,0C,9A,66);
+DEFINE_UUID(AeState, AE_STATE_TIMEOUT,        D2EBEA54,9C16,11E8,B568,18,00,20,0C,9A,66);
+
+/**
+ * Auto White Balance (AWB) Modes.
+ */
+DEFINE_NAMED_UUID_CLASS(AwbMode);
+DEFINE_UUID(AwbMode, AWB_MODE_OFF,              FB3F365A,CC62,11E5,9956,62,56,62,87,07,61);
+DEFINE_UUID(AwbMode, AWB_MODE_AUTO,             FB3F365B,CC62,11E5,9956,62,56,62,87,07,61);
+DEFINE_UUID(AwbMode, AWB_MODE_INCANDESCENT,     FB3F365C,CC62,11E5,9956,62,56,62,87,07,61);
+DEFINE_UUID(AwbMode, AWB_MODE_FLUORESCENT,      FB3F365D,CC62,11E5,9956,62,56,62,87,07,61);
+DEFINE_UUID(AwbMode, AWB_MODE_WARM_FLUORESCENT, FB3F365E,CC62,11E5,9956,62,56,62,87,07,61);
+DEFINE_UUID(AwbMode, AWB_MODE_DAYLIGHT,         FB3F365F,CC62,11E5,9956,62,56,62,87,07,61);
+DEFINE_UUID(AwbMode, AWB_MODE_CLOUDY_DAYLIGHT,  FB3F3660,CC62,11E5,9956,62,56,62,87,07,61);
+DEFINE_UUID(AwbMode, AWB_MODE_TWILIGHT,         FB3F3661,CC62,11E5,9956,62,56,62,87,07,61);
+DEFINE_UUID(AwbMode, AWB_MODE_SHADE,            FB3F3662,CC62,11E5,9956,62,56,62,87,07,61);
+DEFINE_UUID(AwbMode, AWB_MODE_MANUAL,           20FB45DA,C49F,4293,AB02,13,3F,8C,CA,DD,69);
+
+/**
+ * Auto White-Balance States.
+ */
+DEFINE_NAMED_UUID_CLASS(AwbState);
+DEFINE_UUID(AwbState, AWB_STATE_INACTIVE,  E33CDB30,9C16,11E8,B568,18,00,20,0C,9A,66);
+DEFINE_UUID(AwbState, AWB_STATE_SEARCHING, E33CDB31,9C16,11E8,B568,18,00,20,0C,9A,66);
+DEFINE_UUID(AwbState, AWB_STATE_CONVERGED, E33CDB32,9C16,11E8,B568,18,00,20,0C,9A,66);
+DEFINE_UUID(AwbState, AWB_STATE_LOCKED,    E33CDB33,9C16,11E8,B568,18,00,20,0C,9A,66);
+
+/**
+ * A CaptureIntent may be provided during capture request creation to initialize the new
+ * Request with default settings that are appropriate for captures of the given intent.
+ * For example, a PREVIEW intent may disable post-processing in order to reduce latency
+ * and resource usage while a STILL_CAPTURE intent will enable post-processing in order
+ * to optimize still image quality.
+ */
+DEFINE_NAMED_UUID_CLASS(CaptureIntent);
+DEFINE_UUID(CaptureIntent, CAPTURE_INTENT_MANUAL,         FB3F3663,CC62,11E5,9956,62,56,62,87,07,61);
+DEFINE_UUID(CaptureIntent, CAPTURE_INTENT_PREVIEW,        FB3F3664,CC62,11E5,9956,62,56,62,87,07,61);
+DEFINE_UUID(CaptureIntent, CAPTURE_INTENT_STILL_CAPTURE,  FB3F3665,CC62,11E5,9956,62,56,62,87,07,61);
+DEFINE_UUID(CaptureIntent, CAPTURE_INTENT_VIDEO_RECORD,   FB3F3666,CC62,11E5,9956,62,56,62,87,07,61);
+DEFINE_UUID(CaptureIntent, CAPTURE_INTENT_VIDEO_SNAPSHOT, FB3F3667,CC62,11E5,9956,62,56,62,87,07,61);
+
+/**
+ * Denoise (noise reduction) Modes.
+ */
+DEFINE_NAMED_UUID_CLASS(DenoiseMode);
+DEFINE_UUID(DenoiseMode, DENOISE_MODE_OFF,          FB3F3668,CC62,11E5,9956,62,56,62,87,07,61);
+DEFINE_UUID(DenoiseMode, DENOISE_MODE_FAST,         FB3F3669,CC62,11E5,9956,62,56,62,87,07,61);
+DEFINE_UUID(DenoiseMode, DENOISE_MODE_HIGH_QUALITY, FB3F366A,CC62,11E5,9956,62,56,62,87,07,61);
+
+/**
+ * Edge Enhance Modes.
+ */
+DEFINE_NAMED_UUID_CLASS(EdgeEnhanceMode);
+DEFINE_UUID(EdgeEnhanceMode, EDGE_ENHANCE_MODE_OFF,          F7100B40,6A5F,11E6,BDF4,08,00,20,0C,9A,66);
+DEFINE_UUID(EdgeEnhanceMode, EDGE_ENHANCE_MODE_FAST,         F7100B41,6A5F,11E6,BDF4,08,00,20,0C,9A,66);
+DEFINE_UUID(EdgeEnhanceMode, EDGE_ENHANCE_MODE_HIGH_QUALITY, F7100B42,6A5F,11E6,BDF4,08,00,20,0C,9A,66);
+
+/**
+ * Extension Names. Note that ExtensionName UUIDs are defined by their respective extension headers.
+ */
+DEFINE_NAMED_UUID_CLASS(ExtensionName);
 
 /**
  * Pixel formats.
  */
-class PixelFormat : public NamedUUID
-{
-public:
-    PixelFormat(uint32_t time_low_
-              , uint16_t time_mid_
-              , uint16_t time_hi_and_version_
-              , uint16_t clock_seq_
-              , uint8_t c0, uint8_t c1, uint8_t c2, uint8_t c3, uint8_t c4, uint8_t c5
-              , const char* name)
-    : NamedUUID(time_low_, time_mid_, time_hi_and_version_, clock_seq_,
-                c0, c1, c2, c3, c4, c5, name)
-    {}
-
-private:
-    PixelFormat(); // No default c'tor please use PIXEL_FMT_UNKNOWN
-};
-
+DEFINE_NAMED_UUID_CLASS(PixelFormat);
 DEFINE_UUID(PixelFormat, PIXEL_FMT_UNKNOWN,       00000000,93d5,11e5,0000,1c,b7,2c,ef,d4,1e);
 DEFINE_UUID(PixelFormat, PIXEL_FMT_Y8,            569be14a,93d5,11e5,91bc,1c,b7,2c,ef,d4,1e);
 DEFINE_UUID(PixelFormat, PIXEL_FMT_Y16,           56ddb19c,93d5,11e5,8e2c,1c,b7,2c,ef,d4,1e);
@@ -296,6 +254,18 @@ DEFINE_UUID(PixelFormat, PIXEL_FMT_YCbCr_422_888, 573a7940,93d5,11e5,99c2,1c,b7,
 DEFINE_UUID(PixelFormat, PIXEL_FMT_YCbCr_444_888, 576043dc,93d5,11e5,8983,1c,b7,2c,ef,d4,1e);
 DEFINE_UUID(PixelFormat, PIXEL_FMT_JPEG_BLOB,     578b08c4,93d5,11e5,9686,1c,b7,2c,ef,d4,1e);
 DEFINE_UUID(PixelFormat, PIXEL_FMT_RAW16,         57b484d8,93d5,11e5,aeb6,1c,b7,2c,ef,d4,1e);
+DEFINE_UUID(PixelFormat, PIXEL_FMT_P016,          57b484d9,93d5,11e5,aeb6,1c,b7,2c,ef,d4,1e);
+
+/**
+ * The SensorModeType of a sensor defines the type of image data that is output by the
+ * imaging sensor before any sort of image processing (ie. pre-ISP format).
+ */
+DEFINE_NAMED_UUID_CLASS(SensorModeType);
+DEFINE_UUID(SensorModeType, SENSOR_MODE_TYPE_DEPTH, 64483464,4b91,11e6,bbbd,40,16,7e,ab,86,92);
+DEFINE_UUID(SensorModeType, SENSOR_MODE_TYPE_YUV,   6453e00c,4b91,11e6,871d,40,16,7e,ab,86,92);
+DEFINE_UUID(SensorModeType, SENSOR_MODE_TYPE_RGB,   6463d4c6,4b91,11e6,88a3,40,16,7e,ab,86,92);
+DEFINE_UUID(SensorModeType, SENSOR_MODE_TYPE_BAYER, 646f04ea,4b91,11e6,9c06,40,16,7e,ab,86,92);
+
 
 /**
  * Utility class for libargus interfaces.

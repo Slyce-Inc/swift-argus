@@ -114,16 +114,20 @@
 
 #include "Argus/UUID.h"
 #include "Argus/Types.h"
+#include "Argus/Stream.h"
 
+#include "Argus/BufferStream.h"
 #include "Argus/CameraDevice.h"
 #include "Argus/CameraProvider.h"
 #include "Argus/CaptureMetadata.h"
 #include "Argus/CaptureSession.h"
+#include "Argus/EGLImage.h"
+#include "Argus/EGLStream.h"
+#include "Argus/EGLSync.h"
 #include "Argus/Event.h"
 #include "Argus/EventProvider.h"
 #include "Argus/EventQueue.h"
 #include "Argus/Request.h"
 #include "Argus/Settings.h"
-#include "Argus/Stream.h"
 
 #endif

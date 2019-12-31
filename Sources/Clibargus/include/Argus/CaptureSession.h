@@ -140,22 +140,21 @@ public:
                                    Status* status = NULL) = 0;
 
     /**
-     * Creates an OutputStreamSettings object, which is used to configure the settings
-     * for OutputStream creation via createOutputStream.
+     * Creates an OutputStreamSettings object that is used to configure the creation of
+     * an OutputStream (see createOutputStream). The type of OutputStream that will be
+     * configured and created by these settings are determined by the StreamType.
      *
+     * @param[in] type The type of the OutputStream to configure/create with these settings.
      * @param[out] status An optional pointer to return success/status.
      *
-     * @returns The newly created OutputStream, or NULL on failure.
+     * @returns The newly created OutputStreamSettings, or NULL on failure.
      */
-    virtual OutputStreamSettings* createOutputStreamSettings(Status* status = NULL) = 0;
+    virtual OutputStreamSettings* createOutputStreamSettings(const StreamType& type,
+                                                             Status* status = NULL) = 0;
 
     /**
-     * Creates an OutputStream object. All OutputStream objects are associated with
-     * and EGLStream, which is created and owned by this object and left in the CREATED
-     * state upon return. This does not connect as a producer for this EGLStream until
-     * the first request outputting to the stream; thus, the application is expected to
-     * connect the consumer to this stream before the first request is made otherwise the
-     * request will fail.
+     * Creates an OutputStream object using the settings configured by an OutputStreamSettings
+     * object (see createOutputStreamSettings).
      *
      * @param[in] settings The settings to use for the new output stream.
      * @param[out] status An optional pointer to return success/status.

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, NVIDIA CORPORATION. All rights reserved.
+ * Copyright (c) 2016-2018, NVIDIA CORPORATION. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -192,7 +192,7 @@ public:
      *
      * @returns success/status of the call.
      */
-    virtual Status setAeAntibandingMode(AeAntibandingMode mode) = 0;
+    virtual Status setAeAntibandingMode(const AeAntibandingMode& mode) = 0;
 
     /**
      * Returns the AE antibanding mode.
@@ -490,9 +490,8 @@ public:
      * Post-processing features are controlled on a per-Request basis and all streams share the
      * same post-processing control values, but this enable allows certain streams to be excluded
      * from all post-processing. The current controls defined to be a part of "post-processing"
-     * includes:
+     * includes (but may not be limited to):
      *   - Denoise
-     *   - Video Stabilization
      * Default value is true.
      */
     virtual void setPostProcessingEnable(bool enable) = 0;
@@ -604,36 +603,6 @@ public:
 
 protected:
     ~IEdgeEnhanceSettings() {}
-};
-
-/**
- * @class IVideoStabilizationSettings
- *
- * Interface to video stabilization settings.
- *
- * @ingroup ArgusRequest
- */
-DEFINE_UUID(InterfaceID, IID_VIDEO_STABILIZATION_SETTINGS, 7A461D22,6AE1,11E6,BDF4,08,00,20,0C,9A,66);
-class IVideoStabilizationSettings : public Interface
-{
-public:
-    static const InterfaceID& id() { return IID_VIDEO_STABILIZATION_SETTINGS; }
-
-    /**
-     * Sets the video stabilization mode to use for the request.
-     * @param[in] mode The video stabilization mode.
-     *
-     * @returns success/status of the call.
-     */
-    virtual Status setVideoStabilizationMode(const VideoStabilizationMode& mode) = 0;
-
-    /**
-     * Returns the video stabilization mode for the request.
-     */
-    virtual VideoStabilizationMode getVideoStabilizationMode() const = 0;
-
-protected:
-    ~IVideoStabilizationSettings() {}
 };
 
 } // namespace Argus
