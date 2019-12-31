@@ -32,7 +32,7 @@ extern const void* CameraProvider_createCaptureSession(const void* self, const v
 
 extern void CaptureSession_destroy(const void* self);
 //
-extern const void* CaptureSession_createOutputStreamSettings(const void* self);
+extern const void* CaptureSession_createOutputStreamSettings(const void* self, long streamType, long* status);
 extern const void* CaptureSession_createOutputStream(const void* self, const void* outputStreamSettings);
 extern const void* CaptureSession_createRequest(const void* self);
 extern bool CaptureSession_repeat(const void* self, const void* captureRequest);
@@ -44,16 +44,20 @@ extern void CaptureSession_waitForIdle(const void* self);
 
 extern void OutputStreamSettings_destroy(const void* self);
 //
-extern void OutputStreamSettings_setPixelFormat(const void* self, long pixelFormatOrdinal);
-extern long OutputStreamSettings_getPixelValue(const void* self);
-extern void OutputStreamSettings_setResolution(const void* self, long width, long height);
-extern void OutputStreamSettings_getResolution(const void* self, long* width, long* height);
 extern const void* OutputStreamSettings_getCameraDevice(const void* self);
 extern void OutputStreamSettings_setCameraDevice(const void* self, const void* cameraDevice);
-extern void OutputStreamSettings_setStreamMode(const void* self, long streamModeOrdinal);
-extern long OutputStreamSettings_getStreamMode(const void* self);
-extern void OutputStreamSettings_setFifoLength(const void* self, long fifoLength);
-extern long OutputStreamSettings_getFifoLength(const void* self);
+
+
+// EGLOutputStreamSettings
+
+extern void EGLOutputStreamSettings_setPixelFormat(const void* self, long pixelFormatOrdinal);
+extern long EGLOutputStreamSettings_getPixelValue(const void* self);
+extern void EGLOutputStreamSettings_setResolution(const void* self, long width, long height);
+extern void EGLOutputStreamSettings_getResolution(const void* self, long* width, long* height);
+extern void EGLOutputStreamSettings_setEGLStreamMode(const void* self, long streamModeOrdinal);
+extern long EGLOutputStreamSettings_getEGLStreamMode(const void* self);
+extern void EGLOutputStreamSettings_setFifoLength(const void* self, long fifoLength);
+extern long EGLOutputStreamSettings_getFifoLength(const void* self);
 
 
 // OutputStream

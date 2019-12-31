@@ -11,9 +11,16 @@ public class CaptureSession {
     CaptureSession_destroy(wrapped)
   }
 
-  public func createOutputStreamSettings() -> OutputStreamSettings? {
-    guard let oss = CaptureSession_createOutputStreamSettings(wrapped) else { return nil }
-    return OutputStreamSettings(oss)
+  public func createOutputStreamSettings(_ streamType:StreamType, _ statusToReturn: inout Status) -> OutputStreamSettings? {
+    var status = 0
+    guard let oss = CaptureSession_createOutputStreamSettings(wrapped, streamType.rawValue, &status) else { return nil }
+    statusToReturn = Status(rawValue: status)!
+    switch streamType {
+    case .EGL:
+      return EGLOutputStreamSettings(oss)
+    case .BUFFER:
+      return OutputStreamSettings(oss)
+    }
   }
 
   public func createOutputStream(_ outputStreamSettings: OutputStreamSettings) -> OutputStream? {
